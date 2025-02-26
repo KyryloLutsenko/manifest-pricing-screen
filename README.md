@@ -10,10 +10,10 @@
 ## Як запустити проєкт локально
 
 1. Клонуйте репозиторій:
-   git clone https://github.com/KyryloLutsenko/manifest-frontend-test.git
+   git clone https://github.com/KyryloLutsenko/manifest-pricing-screen.git
 
 2. Перейдіть до папки з проєктом:
-   cd manifest-frontend-test
+   cd manifest-pricing-screen
 
 3. Встановіть залежності:
    npm install
