@@ -10,7 +10,7 @@
 ## Як запустити проєкт локально
 
 1. Клонуйте репозиторій:
-   git clone https://github.com/твоє_ім’я/manifest-frontend-test.git
+   git clone https://github.com/KyryloLutsenko/manifest-frontend-test.git
 
 2. Перейдіть до папки з проєктом:
    cd manifest-frontend-test
