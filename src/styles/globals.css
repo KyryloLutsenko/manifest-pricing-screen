@@ -1,3 +1,7 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -39,4 +43,30 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.pricing-cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.most-popular {
+  background: green;
+  color: white;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+
+.best-value {
+  background: gold;
+  color: black;
+  padding: 0.2rem;
+  border-radius: 4px;
 }

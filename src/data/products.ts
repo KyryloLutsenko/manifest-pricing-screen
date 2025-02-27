@@ -1,0 +1,41 @@
+import { IProductProps } from "@/types/Product";
+
+export const products: IProductProps[] = [
+  {
+    id: "1",
+    name: "Unlimited 1-month Plan",
+    regularity: "month",
+    price: 3999,
+    currency: "USD",
+    trial_period: 7,
+    trial_amount: 0,
+    discount: 60.99,
+    discountPercentage: 50,
+    isPopular: true,
+  },
+  {
+    id: "2",
+    name: "7-day Access",
+    regularity: "month",
+    price: 100,
+    currency: "USD",
+    trial_period: 0,
+    trial_amount: 0,
+    discount: 10,
+    discountPercentage: 90,
+    isPopular: false,
+  },
+  {
+    id: "3",
+    name: "Unlimited Annual Plan",
+    regularity: "year",
+    price: 2499,
+    currency: "USD",
+    trial_period: 0,
+    trial_amount: 0,
+    discount: 49.99,
+    discountPercentage: 50,
+    isPopular: false,
+    bestValue: true,
+  },
+];
