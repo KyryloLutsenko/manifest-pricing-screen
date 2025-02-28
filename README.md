@@ -1,25 +1,25 @@
 # Manifest Frontend Test
 
-Це тестове завдання на позицію Frontend developer.
+This is a test task for the position of Frontend developer.
 
-## Стек
+## Stack
 
 - Next.js
 - TypeScript
 
-## Як запустити проєкт локально
+## How to run the project locally
 
-1. Клонуйте репозиторій:
+1. Clone the repository:
    git clone https://github.com/KyryloLutsenko/manifest-pricing-screen.git
 
-2. Перейдіть до папки з проєктом:
+2. Navigate to the project folder:
    cd manifest-pricing-screen
 
-3. Встановіть залежності:
+3. Install dependencies:
    npm install
 
-4. Запустіть локальний сервер:
+4. Start the local server:
    npm run dev
 
-5. Відкрийте у браузері: http://localhost:3000
+5. Open in the browser: http://localhost:3000
    npm run dev

@@ -29,12 +29,12 @@ const ToolSelector: React.FC<IToolSelectorProps> = ({ isMobile }) => {
           slidesPerView={2}
           pagination={{ clickable: true }}
           breakpoints={{
-            640: {
+            340: {
               slidesPerView: 2,
               spaceBetween: 10,
             },
             768: {
-              slidesPerView: 3,
+              slidesPerView: 5,
               spaceBetween: 15,
             },
           }}
