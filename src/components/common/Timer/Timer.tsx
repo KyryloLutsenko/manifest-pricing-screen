@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-import "./Timer.css";
 import { timerAmount } from "@/data/constants";
+
+import "./Timer.css";
 
 const Timer: React.FC = () => {
   const LOCAL_STORAGE_KEY = `timer`;
@@ -47,14 +48,12 @@ const Timer: React.FC = () => {
     return null;
   }
 
-  if (timeLeft === null) {
-    return <div className="timer">Loading...</div>;
-  }
-
-  const minutes = Math.floor(timeLeft / 60)
-    .toString()
-    .padStart(2, "0");
-  const seconds = (timeLeft % 60).toString().padStart(2, "0");
+  const minutes =
+    timeLeft &&
+    Math.floor(timeLeft / 60)
+      .toString()
+      .padStart(2, "0");
+  const seconds = timeLeft && (timeLeft % 60).toString().padStart(2, "0");
 
   return (
     <div className="timer-container">

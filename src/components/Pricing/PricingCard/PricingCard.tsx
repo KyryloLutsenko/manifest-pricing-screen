@@ -6,8 +6,9 @@ import BestValueBadge from "@/components/common/BestValueBadge";
 
 import { calculateSavings, formatCurrency } from "../helpers";
 
-import "./PricingCard.css";
 import { IPricingCardProps } from ".";
+
+import "./PricingCard.css";
 
 const PricingCard: React.FC<IPricingCardProps> = ({
   product,
@@ -24,8 +25,6 @@ const PricingCard: React.FC<IPricingCardProps> = ({
   const trialAmount = formatCurrency(trial_amount, currency);
   const savedPercent = calculateSavings(price, trial_amount);
   const isMostPopular = regularity === "month" && trial_period === 0;
-
-  console.log(savedPercent);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
