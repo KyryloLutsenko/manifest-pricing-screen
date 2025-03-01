@@ -15,9 +15,8 @@ const Pricing = () => {
   const [selectedProductId, setSelectedProductId] = useState<string | null>(
     null
   );
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {}, []);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const savedProduct = localStorage.getItem(SELECTED_PRODUCT_KEY);

@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./SubscriptionNotice.css";
 
 const SubscriptionNotice: React.FC = () => {
