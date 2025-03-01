@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+import { tools } from "@/data/tools";
+
+import ToolCard from "./ToolCard";
+
+import { IToolSelectorProps } from ".";
+
 import "./ToolSelector.css";
-
-// Дані для компоненту: список інструментів з назвами та іконками
-const tools = [
-  { name: "Paraphraser", icon: "📝" },
-  { name: "Grammar Check", icon: "🔍" },
-  { name: "Plagiarism Check", icon: "✅" },
-  { name: "AI Humanizer", icon: "🤖" },
-  { name: "AI Detector", icon: "🔦" },
-  { name: "Summarizer", icon: "📚" },
-  { name: "Chrome Extension", icon: "🔗" },
-];
-
-interface IToolSelectorProps {
-  isMobile: boolean;
-}
 
 const ToolSelector: React.FC<IToolSelectorProps> = ({ isMobile }) => {
   return (
@@ -30,7 +22,7 @@ const ToolSelector: React.FC<IToolSelectorProps> = ({ isMobile }) => {
           pagination={{ clickable: true }}
           breakpoints={{
             340: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 10,
             },
             768: {
@@ -41,20 +33,14 @@ const ToolSelector: React.FC<IToolSelectorProps> = ({ isMobile }) => {
         >
           {tools.map((tool, index) => (
             <SwiperSlide key={index}>
-              <div className="tool-item">
-                <span className="tool-icon">{tool.icon}</span>
-                <span className="tool-name">{tool.name}</span>
-              </div>
+              <ToolCard key={tool.name} icon={tool.icon} name={tool.name} />
             </SwiperSlide>
           ))}
         </Swiper>
       ) : (
         <div className="tool-list">
           {tools.map((tool, index) => (
-            <div key={index} className="tool-item">
-              <span className="tool-icon">{tool.icon}</span>
-              <span className="tool-name">{tool.name}</span>
-            </div>
+            <ToolCard key={tool.name} icon={tool.icon} name={tool.name} />
           ))}
         </div>
       )}

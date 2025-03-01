@@ -1,0 +1,22 @@
+.subscription-notice {
+  max-width: 32.875rem;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.1px;
+  color: #747e97;
+  margin-top: 1.5rem;
+}
+
+.subscription-notice a {
+  text-decoration: underline;
+  color: #747e97;
+}
+
+@media (max-width: 1024px) {
+  .subscription-notice {
+    max-width: 22.875rem;
+  }
+}

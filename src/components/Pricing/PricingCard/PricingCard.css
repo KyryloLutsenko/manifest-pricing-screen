@@ -1,8 +1,18 @@
 .card {
-  padding: 20px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  position: relative;
+  border: 4px solid #d7f4f3;
+  background-color: #fff;
+  border-radius: 1rem;
   transition: transform 0.3s;
+  width: 22.75rem;
+  height: fit-content;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.5rem;
 }
 
 .card.selected {
@@ -12,7 +22,6 @@
 .product-select {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .radio-input {
@@ -21,8 +30,7 @@
 
 .radio-label {
   cursor: pointer;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
 }
@@ -51,17 +59,39 @@
 }
 
 .old-price {
-  color: #b0bec5;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: #181b29cc;
   text-decoration: line-through;
+  text-decoration-color: #ff0000;
 }
 
 .new-price {
-  color: #1e88e5;
-  font-size: 1.8rem;
-  font-weight: bold;
+  color: #3b71f7;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .per-period {
   color: #757575;
   font-size: 0.8rem;
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.price-period {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: #181b29cc;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: 100%;
+  }
 }

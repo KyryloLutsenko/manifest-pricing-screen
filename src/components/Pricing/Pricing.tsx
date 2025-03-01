@@ -1,54 +1,75 @@
 import React, { useState, useEffect } from "react";
-import { products } from "@/data/products";
-import PricingCard from "./PricingCard";
-import "./Pricing.css";
-import ToolSelector from "@/components/common/ToolSelector";
 
-const SELECTED_PRODUCT_KEY = "selectedProduct";
+import ToolSelector from "@/components/common/ToolSelector";
+import PricingCard from "./PricingCard";
+import Button from "../common/Button";
+import SubscriptionNotice from "../common/SubscriptionNotice";
+
+import { products } from "@/data/products";
+import { SELECTED_PRODUCT_KEY } from "@/data/constants";
+
+import "./Pricing.css";
+import Timer from "../common/Timer";
 
 const Pricing = () => {
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(
+    null
+  );
   const [isMobile, setIsMobile] = useState(false);
 
-  // Завантаження вибору з LocalStorage при першому рендері
+  useEffect(() => {}, []);
+
   useEffect(() => {
     const savedProduct = localStorage.getItem(SELECTED_PRODUCT_KEY);
     if (savedProduct) {
-      setSelectedProduct(savedProduct);
+      setSelectedProductId(savedProduct);
+    } else {
+      setSelectedProductId(products[2].id);
     }
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
     };
 
-    handleResize(); // Викликаємо при першому завантаженні
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [selectedProductId]);
 
-  // Збереження вибору у LocalStorage
   const handleSelect = (id: string, name: string) => {
-    setSelectedProduct(id);
+    setSelectedProductId(id);
     localStorage.setItem(SELECTED_PRODUCT_KEY, id);
-    console.log("Selected Product:", { id, name });
+  };
+
+  const handleGetStarted = () => {
+    const productData = products.find(
+      (product) => product.id === selectedProductId
+    );
+    console.log({ id: productData?.id, name: productData?.name });
   };
 
   return (
     <section className="pricing-container">
       <h1 className="pricing-title">Choose Your Plan:</h1>
-
       <ToolSelector isMobile={isMobile} />
-
-      <div className="pricing-cards">
-        {products.map((product) => (
-          <PricingCard
-            key={product.id}
-            product={product}
-            isSelected={selectedProduct === product.id}
-            onSelect={handleSelect}
-          />
-        ))}
+      <div className="pricing-cards-container">
+        {isMobile && <Timer />}
+        <div className="pricing-cards">
+          {products.map((product) => (
+            <PricingCard
+              key={product.id}
+              product={product}
+              isSelected={selectedProductId === product.id}
+              onSelect={handleSelect}
+              isMobile={isMobile}
+            />
+          ))}
+        </div>
       </div>
+      <Button variant="primary" onClick={handleGetStarted}>
+        Get Started
+      </Button>
+      <SubscriptionNotice />
     </section>
   );
 };

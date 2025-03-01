@@ -1,98 +1,99 @@
 import React, { useEffect, useState } from "react";
 
 import Timer from "@/components/common/Timer";
-import DiscountBadge from "@/components/common/DiscountBadge";
+import CardBadge from "@/components/common/CardBadge";
+import BestValueBadge from "@/components/common/BestValueBadge";
 
-import { IProductProps } from "@/types/Product";
+import { calculateSavings, formatCurrency } from "../helpers";
 
 import "./PricingCard.css";
-
-interface IPricingCardProps {
-  product: IProductProps;
-  isSelected: boolean;
-  onSelect: (id: string, name: string) => void;
-}
+import { IPricingCardProps } from ".";
 
 const PricingCard: React.FC<IPricingCardProps> = ({
   product,
   isSelected,
   onSelect,
+  isMobile,
 }) => {
-  const {
-    id,
-    name,
-    price,
-    currency,
-    regularity,
-    discount,
-    discountPercentage,
-    isPopular,
-    bestValue,
-  } = product;
+  const { id, name, price, currency, regularity, trial_amount, trial_period } =
+    product;
 
   const [showDiscount, setShowDiscount] = useState(true);
 
+  const priceAmount = formatCurrency(price, currency);
+  const trialAmount = formatCurrency(trial_amount, currency);
+  const savedPercent = calculateSavings(price, trial_amount);
+  const isMostPopular = regularity === "month" && trial_period === 0;
+
+  console.log(savedPercent);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const isExpired = localStorage.getItem(`expired_${id}`) === "true";
+      const isExpired = localStorage.getItem(`expired`) === "true";
       setShowDiscount(!isExpired);
     }
   }, [id]);
 
   return (
     <div className={`card ${isSelected ? "selected" : ""}`}>
-      {isPopular && <span className="most-popular">Most Popular</span>}
-      {bestValue && <span className="best-value">Best Value</span>}
+      {regularity === "year" && <BestValueBadge />}
 
-      {showDiscount && (
-        <DiscountBadge discountPercentage={discountPercentage} />
-      )}
+      <CardBadge
+        text={
+          isMostPopular
+            ? "Most Popular"
+            : showDiscount
+            ? `Save ${savedPercent}%`
+            : ""
+        }
+      />
 
-      <Timer productId={id} />
+      {!isMobile && <Timer />}
+      <div className="card-info">
+        <div className="product-select">
+          <input
+            type="radio"
+            id={`radio-${id}`}
+            name="pricing-plan"
+            checked={isSelected}
+            className="radio-input"
+            onChange={() => onSelect(id, name)}
+          />
+          <label htmlFor={`radio-${id}`} className="radio-label">
+            <span className="custom-radio">
+              {isSelected && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="checkmark"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              )}
+            </span>
+            {name}
+          </label>
+        </div>
 
-      <div className="product-select">
-        <input
-          type="radio"
-          id={`radio-${id}`}
-          name="pricing-plan"
-          checked={isSelected}
-          onChange={() => onSelect(id, name)}
-          className="radio-input"
-        />
-        <label htmlFor={`radio-${id}`} className="radio-label">
-          <span className="custom-radio">
-            {isSelected && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="checkmark"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            )}
-          </span>
-          {name}
-        </label>
+        <div className="price-block">
+          {showDiscount && price && (
+            <del className="old-price">{priceAmount}</del>
+          )}
+          <p className="new-price">
+            {!showDiscount ? priceAmount : trialAmount}
+          </p>
+          <p className="price-period">
+            {trial_period ? "Then 29.99 per month" : "Per month"}
+          </p>
+        </div>
       </div>
-
-      {showDiscount && discount && (
-        <p className="old-price">
-          <del>
-            {discount.toFixed(2)} {currency}
-          </del>
-        </p>
-      )}
-      <p className="new-price">
-        ${(price / 100).toFixed(2)}
-        <span className="per-period"> / {regularity}</span>
-      </p>
     </div>
   );
 };
