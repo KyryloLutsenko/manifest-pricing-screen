@@ -1,0 +1,19 @@
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+  gap: 0.5rem;
+  min-width: fit-content;
+}
+
+.tool-icon {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.tool-name {
+  font-size: 1rem;
+  font-weight: 600;
+}

@@ -1,0 +1,35 @@
+.tool-selector-container {
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 2.5rem;
+}
+
+.tool-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+  gap: 0.5rem;
+  min-width: fit-content;
+}
+
+.tool-icon {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.tool-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
