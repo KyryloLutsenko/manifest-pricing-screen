@@ -22,4 +22,3 @@ This is a test task for the position of Frontend developer.
    npm run dev
 
 5. Open in the browser: http://localhost:3000
-   npm run dev
