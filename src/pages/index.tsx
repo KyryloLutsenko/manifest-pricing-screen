@@ -15,7 +15,7 @@ export default function Home() {
         <title>Pricing Screen</title>
         <meta name="description" content="Choose the best pricing plan." />
       </Head>
-      <main>{showTimer ? <Pricing /> : <div>aaaa</div>}</main>
+      <main>{showTimer ? <Pricing /> : <div>Test Page</div>}</main>
     </>
   );
 }
